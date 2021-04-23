@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import {Button, Table} from 'semantic-ui-react';
+import { Button, Table } from 'semantic-ui-react';
 
 const tableData = [
   { date: '5/1/21', time: '7:30am', location: 'Queens Kapiolani', vaccine: 'Pfizer' },
