@@ -1,5 +1,6 @@
 import React from 'react';
-import { Grid, Image, Statistic } from 'semantic-ui-react';
+import {Grid, Image, Menu, Statistic} from 'semantic-ui-react';
+import {NavLink} from "react-router-dom";
 
 /** A simple static component to render some text for the landing page. */
 class Landing extends React.Component {
@@ -20,7 +21,7 @@ class Landing extends React.Component {
             <br/>
             <br/>
             <br/>
-          <h2>See Nearby Locations</h2>
+          <h2><NavLink exact to="/list">See Nearby Locations</NavLink></h2>
           <h2>Scheduling an appointment</h2>
           <h2>Check your current appointments</h2>
         </Grid.Column>
