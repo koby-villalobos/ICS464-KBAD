@@ -23,7 +23,7 @@ class Landing extends React.Component {
             <br/>
           <h2><NavLink exact to="/map">See Nearby Locations</NavLink></h2>
           <h2><NavLink exact to="/list">Scheduling an appointment</NavLink></h2>
-          <h2>Check your current appointments</h2>
+          <h2><NavLink exact to="/profile">Check your current appointments</NavLink></h2>
         </Grid.Column>
 
         <Grid.Column width={8}>
