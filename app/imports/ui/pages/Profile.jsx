@@ -64,33 +64,47 @@ class Profile extends React.Component {
   render() {
     return (
         <Container>
+          <div className="ui centered card">
+            <Image size='medium' circular src="/images/meteor-logo.png"/>
+            <div className="content">
+              <a className="header">Adrian Au</a>
+              <div className="meta">
+                <span className="date">Sex- Male</span>
+              </div>
+              <div className="description">
+                DOB- 01/01/1999
+              </div>
+              <p>Address- 1234 Example Street, 12345</p>
+            </div>
+            <div className="extra content">
+              <a>
+                <i className="user icon"></i>
+              </a>
+            </div>
+          </div>
                     <Header as="h2" textAlign="center">Your Appointments</Header>
                     <Table celled>
                       <Table.Header>
                         <Table.Row>
-                          <Table.HeaderCell>Header</Table.HeaderCell>
-                          <Table.HeaderCell>Header</Table.HeaderCell>
-                          <Table.HeaderCell>Header</Table.HeaderCell>
+                          <Table.HeaderCell>Date</Table.HeaderCell>
+                          <Table.HeaderCell>Time</Table.HeaderCell>
+                          <Table.HeaderCell>Location</Table.HeaderCell>
+                          <Table.HeaderCell>Vaccine</Table.HeaderCell>
                         </Table.Row>
                       </Table.Header>
 
                       <Table.Body>
                         <Table.Row>
-                          <Table.Cell>
-                            <Label ribbon>First</Label>
-                          </Table.Cell>
-                          <Table.Cell>Cell</Table.Cell>
-                          <Table.Cell>Cell</Table.Cell>
+                          <Table.Cell>5/1/21</Table.Cell>
+                          <Table.Cell>9:00 AM</Table.Cell>
+                          <Table.Cell>Queen's Punchbowl</Table.Cell>
+                          <Table.Cell>Pfizer (first dose)</Table.Cell>
                         </Table.Row>
                         <Table.Row>
-                          <Table.Cell>Cell</Table.Cell>
-                          <Table.Cell>Cell</Table.Cell>
-                          <Table.Cell>Cell</Table.Cell>
-                        </Table.Row>
-                        <Table.Row>
-                          <Table.Cell>Cell</Table.Cell>
-                          <Table.Cell>Cell</Table.Cell>
-                          <Table.Cell>Cell</Table.Cell>
+                          <Table.Cell>5/15/21</Table.Cell>
+                          <Table.Cell>2:00 PM</Table.Cell>
+                          <Table.Cell>Queen's Punchbowl</Table.Cell>
+                          <Table.Cell>Pfizer (second dose)</Table.Cell>
                         </Table.Row>
                       </Table.Body>
 
@@ -98,9 +112,22 @@ class Profile extends React.Component {
                       {/*<Table.Body>*/}
                          {/*{this.props.stuffs.map((stuff) => <StuffItem key={stuff._id} stuff={stuff} />)}*/}
                        {/*</Table.Body>*/}
-
                      </Table>
+          <div class="ui grid">
+            <div className="eight wide column">
+              <div id="reschedule">
+                <p>Need to reschedule?</p>
+              </div>
+            </div>
+            <div className="eight wide column">
+              <button className="big teal ui right labeled icon button">
+                <i className="right arrow icon"></i>
+                See available appointments
+              </button>
+            </div>
+          </div>
                    </Container>
+
     );
   }
 }
