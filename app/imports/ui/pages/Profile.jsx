@@ -1,4 +1,5 @@
 import React from 'react';
+import {NavLink} from "react-router-dom";
 // import { Grid, Image } from 'semantic-ui-react';
 import { Meteor } from 'meteor/meteor';
 import { Container, Table, Header, Loader, Grid, Image, Label} from 'semantic-ui-react';
@@ -120,10 +121,12 @@ class Profile extends React.Component {
               </div>
             </div>
             <div className="eight wide column">
+              <NavLink exact to="/list">
               <button className="big teal ui right labeled icon button">
                 <i className="right arrow icon"></i>
                 See available appointments
               </button>
+              </NavLink>
             </div>
           </div>
                    </Container>
