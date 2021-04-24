@@ -1,58 +1,88 @@
 import React from 'react';
-import { Meteor } from 'meteor/meteor';
-import { Container, Table, Header, Loader } from 'semantic-ui-react';
-import { withTracker } from 'meteor/react-meteor-data';
-import PropTypes from 'prop-types';
-import { Stuffs } from '../../api/stuff/Stuff';
-import StuffItem from '../components/StuffItem';
+import _ from 'lodash';
+import { Button, Table } from 'semantic-ui-react';
 
-/** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
-class ListStuff extends React.Component {
+const tableData = [
+  { date: '5/1/21', time: '7:30am', location: 'Queens Kapiolani', vaccine: 'Pfizer' },
+  { date: '5/1/21', time: '7:45am', location: 'Queens Punchbowl', vaccine: 'Moderna' },
+  { date: '5/1/21', time: '8:00am', location: 'CVS Kalihi', vaccine: 'J&J' },
+  { date: '5/1/21', time: '8:15am', location: 'CVS Mililani', vaccine: 'Pfizer' },
+  { date: '5/2/21', time: '7:30am', location: 'CVS Kapolei', vaccine: 'Pfizer' },
+  { date: '5/2/21', time: '7:30am', location: 'Kapiolani Medical Center', vaccine: 'Moderna' },
+];
 
-  // If the subscription(s) have been received, render the page, otherwise show a loading icon.
-  render() {
-    return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
-  }
+function exampleReducer(state, action) {
+  switch (action.type) {
+  case 'CHANGE_SORT':
+    if (state.column === action.column) {
+      return {
+        ...state,
+        data: state.data.slice().reverse(),
+        direction:
+              state.direction === 'ascending' ? 'descending' : 'ascending',
+      };
+    }
 
-  // Render the page once subscriptions have been received.
-  renderPage() {
-    return (
-      <Container>
-        <Header as="h2" textAlign="center">List Stuff</Header>
-        <Table celled>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell>Name</Table.HeaderCell>
-              <Table.HeaderCell>Quantity</Table.HeaderCell>
-              <Table.HeaderCell>Condition</Table.HeaderCell>
-              <Table.HeaderCell>Edit</Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
-          <Table.Body>
-            {this.props.stuffs.map((stuff) => <StuffItem key={stuff._id} stuff={stuff} />)}
-          </Table.Body>
-        </Table>
-      </Container>
-    );
+    return {
+      column: action.column,
+      data: _.sortBy(state.data, [action.column]),
+      direction: 'ascending',
+    };
+  default:
+    throw new Error();
   }
 }
 
-// Require an array of Stuff documents in the props.
-ListStuff.propTypes = {
-  stuffs: PropTypes.array.isRequired,
-  ready: PropTypes.bool.isRequired,
-};
+function Scheduler() {
+  const [state, dispatch] = React.useReducer(exampleReducer, {
+    column: null,
+    data: tableData,
+    direction: null,
+  });
+  const { column, data, direction } = state;
 
-// withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
-export default withTracker(() => {
-  // Get access to Stuff documents.
-  const subscription = Meteor.subscribe(Stuffs.userPublicationName);
-  // Determine if the subscription is ready
-  const ready = subscription.ready();
-  // Get the Stuff documents
-  const stuffs = Stuffs.collection.find({}).fetch();
-  return {
-    stuffs,
-    ready,
-  };
-})(ListStuff);
+  return (
+    <Table sortable celled fixed>
+      <Table.Header>
+        <Table.Row>
+          <Table.HeaderCell
+            sorted={column === 'date' ? direction : null}
+            onClick={() => dispatch({ type: 'CHANGE_SORT', column: 'date' })}
+          >
+              Date
+          </Table.HeaderCell>
+          <Table.HeaderCell
+            sorted={column === 'time' ? direction : null}
+            onClick={() => dispatch({ type: 'CHANGE_SORT', column: 'time' })}
+          >
+              Time
+          </Table.HeaderCell>
+          <Table.HeaderCell
+          >
+              Location
+          </Table.HeaderCell>
+          <Table.HeaderCell
+          >
+            Vaccine
+          </Table.HeaderCell>
+          <Table.HeaderCell>
+            Select
+          </Table.HeaderCell>
+        </Table.Row>
+      </Table.Header>
+      <Table.Body>
+        {data.map(({ time, location, date, vaccine }) => (
+          <Table.Row key={date}>
+            <Table.Cell>{date}</Table.Cell>
+            <Table.Cell>{time}</Table.Cell>
+            <Table.Cell>{location}</Table.Cell>
+            <Table.Cell>{vaccine}</Table.Cell>
+            <Table.Cell><Button color={'green'}>Confirm</Button></Table.Cell>
+          </Table.Row>
+        ))}
+      </Table.Body>
+    </Table>
+  );
+}
+
+export default Scheduler;
