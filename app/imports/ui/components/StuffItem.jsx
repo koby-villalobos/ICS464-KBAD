@@ -13,6 +13,7 @@ class StuffItem extends React.Component {
         <Table.Cell>{this.props.stuff.condition}</Table.Cell>
         <Table.Cell>
           <Link to={`/edit/${this.props.stuff._id}`}>Edit</Link>
+          {/*{this.props.stuff.vaccine}*/}
         </Table.Cell>
       </Table.Row>
     );
