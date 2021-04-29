@@ -29,7 +29,7 @@ class Map extends React.Component {
   renderPage() {
     return (
       <Container>
-        <Header as="h2" textAlign="center">Map</Header>
+        <Header as="h2" textAlign="center">Map *Would show locations of actual vaccine places if implemented*</Header>
 
         <MyMapComponent
           isMarkerShown
