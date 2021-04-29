@@ -6,12 +6,11 @@ class Footer extends React.Component {
     const divStyle = { paddingTop: '15px' };
     return (
       <footer>
-        <div style={divStyle} className="ui center aligned container">
+        <div id="footer" style={divStyle} className="ui center aligned container">
           <hr />
-              Department of Information and Computer Sciences <br />
-              University of Hawaii<br />
-              Honolulu, HI 96822 <br />
-          <a href="http://ics-software-engineering.github.io/meteor-application-template-react">Template Home Page</a>
+              KBAD Vaccine Scheduler <br />
+              Developed by Koby Villalobos, Braden Betz, Adrian Au, Davin Takahashi <br />
+          <a href="https://github.com/koby-villalobos/ICS464-KBAD">KBAD GitHub Page</a>
         </div>
       </footer>
     );
