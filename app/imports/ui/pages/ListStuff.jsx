@@ -77,7 +77,7 @@ function Scheduler() {
             <Table.Cell>{time}</Table.Cell>
             <Table.Cell>{location}</Table.Cell>
             <Table.Cell>{vaccine}</Table.Cell>
-            <Table.Cell><Popup content='YOU HAVE CONFIRMED YOUR APPOINTMENT! GO TO PROFILE TO CHECK' on='click' pinned trigger={<Button color='green' content='Confirm' />}
+            <Table.Cell><Popup content='YOU HAVE CONFIRMED YOUR APPOINTMENT! GO TO PROFILE TO CHECK FOR LOCATION AND TIME, A FULLY IMPLEMENTED UI WILL HAVE YOUR APPOINTMENT LOCATION ON THE MAP TAB' on='click' pinned trigger={<Button color='green' content='Confirm' />}
             /></Table.Cell>
           </Table.Row>
         ))}
