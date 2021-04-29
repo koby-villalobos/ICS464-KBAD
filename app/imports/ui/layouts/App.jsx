@@ -9,7 +9,7 @@ import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
 import ListStuff from '../pages/ListStuff';
 import ListStuffAdmin from '../pages/ListStuffAdmin';
-import AddStuff from '../pages/AddStuff';
+import AddAppointment from '../pages/AddAppointment';
 import EditStuff from '../pages/EditStuff';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
@@ -31,7 +31,7 @@ class App extends React.Component {
             <Route path="/signup" component={Signup}/>
             <Route path="/signout" component={Signout}/>
             <ProtectedRoute path="/list" component={ListStuff}/>
-            <ProtectedRoute path="/add" component={AddStuff}/>
+            <ProtectedRoute path="/add" component={AddAppointment}/>
             <ProtectedRoute path="/profile" component={Profile}/>
             <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
             <ProtectedRoute path="/map" component={Map} />
