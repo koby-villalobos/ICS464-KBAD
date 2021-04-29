@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import {Button, Table} from 'semantic-ui-react';
+import { Button, Table, Popup } from 'semantic-ui-react';
 
 const tableData = [
   { date: '5/1/21', time: '7:30am', location: 'Queens Kapiolani', vaccine: 'Pfizer' },
@@ -77,7 +77,8 @@ function Scheduler() {
             <Table.Cell>{time}</Table.Cell>
             <Table.Cell>{location}</Table.Cell>
             <Table.Cell>{vaccine}</Table.Cell>
-            <Table.Cell><Button color={'green'}>Confirm</Button></Table.Cell>
+            <Table.Cell><Popup content='YOU HAVE CONFIRMED YOUR APPOINTMENT! GO TO PROFILE TO CHECK' on='click' pinned trigger={<Button color='green' content='Confirm' />}
+            /></Table.Cell>
           </Table.Row>
         ))}
       </Table.Body>
