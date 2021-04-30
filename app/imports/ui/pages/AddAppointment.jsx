@@ -1,58 +1,57 @@
 import React from 'react';
-import { Appointments, AppointmentSchema } from '/imports/api/appointment/appointment';
 import { Grid, Segment, Header } from 'semantic-ui-react';
-import AutoForm from 'uniforms-semantic/AutoForm';
-import TextField from 'uniforms-semantic/TextField';
-import LongTextField from 'uniforms-semantic/LongTextField';
-import SubmitField from 'uniforms-semantic/SubmitField';
-import HiddenField from 'uniforms-semantic/HiddenField';
-import ErrorsField from 'uniforms-semantic/ErrorsField';
-import { Bert } from 'meteor/themeteorchef:bert';
+import { AutoForm, ErrorsField, NumField, SelectField, SubmitField, TextField } from 'uniforms-semantic';
+import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
+import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
+import SimpleSchema from 'simpl-schema';
+import { Stuffs } from '../../api/stuff/Stuff';
+
+// Create a schema to specify the structure of the data to appear in the form.
+const formSchema = new SimpleSchema({
+  name: String,
+  quantity: Number,
+  condition: {
+    type: String,
+    allowedValues: ['excellent', 'good', 'fair', 'poor'],
+    defaultValue: 'good',
+  },
+});
+
+const bridge = new SimpleSchema2Bridge(formSchema);
 
 /** Renders the Page for adding a document. */
-class AddAppointment extends React.Component {
+class AddStuff extends React.Component {
 
-  /** Bind 'this' so that a ref to the Form can be saved in formRef and communicated between render() and submit(). */
-  constructor(props) {
-    super(props);
-    this.submit = this.submit.bind(this);
-    this.insertCallback = this.insertCallback.bind(this);
-    this.formRef = null;
-  }
-
-  /** Notify the user of the results of the submit. If successful, clear the form. */
-  insertCallback(error) {
-    if (error) {
-      Bert.alert({ type: 'danger', message: `Add failed: ${error.message}` });
-    } else {
-      Bert.alert({ type: 'success', message: 'Add succeeded' });
-      this.formRef.reset();
-    }
-  }
-
-  /** On submit, insert the data. */
-  submit(data) {
-    const { date, time, location, vaccine } = data;
+  // On submit, insert the data.
+  submit(data, formRef) {
+    const { name, quantity, condition } = data;
     const owner = Meteor.user().username;
-    Appointments.insert({ date, time, location, vaccine, owner }, this.insertCallback);
+    Stuffs.collection.insert({ name, quantity, condition, owner },
+        (error) => {
+          if (error) {
+            swal('Error', error.message, 'error');
+          } else {
+            swal('Success', 'Item added successfully', 'success');
+            formRef.reset();
+          }
+        });
   }
 
-  /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
+  // Render the form. Use Uniforms: https://github.com/vazco/uniforms
   render() {
+    let fRef = null;
     return (
         <Grid container centered>
           <Grid.Column>
-            <Header as="h2" textAlign="center" inverted>Add Appointment</Header>
-            <AutoForm ref={(ref) => { this.formRef = ref; }} schema={AppointmentSchema} onSubmit={this.submit}>
+            <Header as="h2" textAlign="center">Add Stuff</Header>
+            <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => this.submit(data, fRef)} >
               <Segment>
-                <TextField name='date'/>
-                <TextField name='time'/>
-                <TextField name='location'/>
-                <TextField name='vaccine'/>
+                <TextField name='name'/>
+                <NumField name='quantity' decimal={false}/>
+                <SelectField name='condition'/>
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
-                <HiddenField name='owner' value='fakeuser@foo.com'/>
               </Segment>
             </AutoForm>
           </Grid.Column>
@@ -61,4 +60,4 @@ class AddAppointment extends React.Component {
   }
 }
 
-export default AddAppointment;
+export default AddStuff;
