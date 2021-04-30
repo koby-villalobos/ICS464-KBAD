@@ -10,7 +10,7 @@ import Landing from '../pages/Landing';
 import ListStuff from '../pages/ListStuff';
 import ListStuffAdmin from '../pages/ListStuffAdmin';
 import AddStuff from '../pages/AddStuff';
-import EditStuff from '../pages/EditStuff';
+import EditContact from '../pages/EditContact';
 import ListContacts from '../pages/ListContacts';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
@@ -18,6 +18,7 @@ import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
 import Map from '../pages/Map.jsx';
 import Profile from '../pages/Profile';
+
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -34,7 +35,7 @@ class App extends React.Component {
             <ProtectedRoute path="/list" component={ListStuff}/>
             <ProtectedRoute path="/add" component={AddStuff}/>
             <ProtectedRoute path="/profile" component={Profile}/>
-            <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
+            <ProtectedRoute path="/edit/:_id" component={EditContact}/>
             <ProtectedRoute path="/map" component={Map} />
             <ProtectedRoute path="/listcontacts" component={ListContacts} />
             <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
