@@ -24,7 +24,7 @@ class Contact extends React.Component {
               22 Friends
             </a>
           </Card.Content>
-          
+
           <Card.Content extra>
             <Link to={`/edit/${this.props.contact._id}`}>Edit</Link>
           </Card.Content>
