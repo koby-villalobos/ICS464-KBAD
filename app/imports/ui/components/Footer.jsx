@@ -11,6 +11,9 @@ class Footer extends React.Component {
               KBAD Vaccine Scheduler <br />
               Developed by Koby Villalobos, Braden Betz, Adrian Au, Davin Takahashi <br />
           <a href="https://github.com/koby-villalobos/ICS464-KBAD">KBAD GitHub Page</a>
+              Department of KBAD <br />
+              University of Hawaii<br />
+              Honolulu, HI 96822 <br />
         </div>
       </footer>
     );
