@@ -114,7 +114,7 @@ class Profile extends React.Component {
                          {/*{this.props.stuffs.map((stuff) => <StuffItem key={stuff._id} stuff={stuff} />)}*/}
                        {/*</Table.Body>*/}
                      </Table>
-          <div class="ui grid">
+          <div className="ui grid">
             <div className="eight wide column">
               <div id="reschedule">
                 <p>Need to reschedule?</p>

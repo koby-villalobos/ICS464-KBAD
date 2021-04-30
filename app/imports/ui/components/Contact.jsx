@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Table, Card} from 'semantic-ui-react';
+import { Card, Image, Table, Icon } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
 
@@ -7,28 +7,22 @@ import { withRouter, Link } from 'react-router-dom';
 class Contact extends React.Component {
   render() {
     return (
-        <Card>
+        <Card centered>
+          <Image src={this.props.contact.image} wrapped ui={false} />
           <Card.Content>
-            <Image
-                floated='right'
-                size='mini'
-                src={this.props.contact.image}
-            />
-            <Card.Header>{this.props.contact.firstName}</Card.Header>
-            <Card.Meta>Friends of Elliot</Card.Meta>
+            <Card.Header>{this.props.contact.firstName} {this.props.contact.lastName}</Card.Header>
+            <Card.Meta>
+              <span className='date'>{this.props.contact.address}</span>
+            </Card.Meta>
             <Card.Description>
-              Steve wants to add you to the group <strong>best friends</strong>
+                {this.props.contact.description}
             </Card.Description>
           </Card.Content>
           <Card.Content extra>
-            <div className='ui two buttons'>
-              <Button basic color='green'>
-                Approve
-              </Button>
-              <Button basic color='red'>
-                Decline
-              </Button>
-            </div>
+            <a>
+              <Icon name='user' />
+              22 Friends
+            </a>
           </Card.Content>
         </Card>
     );
