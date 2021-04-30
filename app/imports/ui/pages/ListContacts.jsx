@@ -21,7 +21,7 @@ class ListContacts extends React.Component {
   renderPage() {
     return (
         <Container>
-          <Header as="h2" textAlign="center">List Stuff</Header>
+          <Header as="h2" textAlign="center">Your Profile</Header>
           {/*<Card>{this.contacts[1]}</Card>*/}
           <Card.Group>{this.props.contacts.map((contact, index) => <Contact key = {index} contact={contact} /> )}</Card.Group>
         </Container>
