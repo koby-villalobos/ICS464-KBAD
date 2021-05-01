@@ -12,10 +12,10 @@ class Appointment extends React.Component {
         <Table.Cell>{this.props.appointment.time}</Table.Cell>
         <Table.Cell>{this.props.appointment.location}</Table.Cell>
         <Table.Cell>{this.props.appointment.vaccine}</Table.Cell>
-        <Table.Cell>
-          <Link to={`/edit/${this.props.appointments._id}`}>Edit</Link>
-          {/*{this.props.stuff.vaccine}*/}
-        </Table.Cell>
+        {/*<Table.Cell>*/}
+        {/*  <Link to={`/edit/${this.props.appointments._id}`}>Edit</Link>*/}
+        {/*  /!*{this.props.stuff.vaccine}*!/*/}
+        {/*</Table.Cell>*/}
       </Table.Row>
     );
   }
@@ -25,10 +25,10 @@ class Appointment extends React.Component {
 Appointment.propTypes = {
   appointment: PropTypes.shape({
     date: PropTypes.string,
-    time: PropTypes.number,
+    time: PropTypes.string,
     location: PropTypes.string,
     vaccine: PropTypes.string,
-    _id: PropTypes.string,
+    //_id: PropTypes.string,
   }).isRequired,
 };
 

@@ -121,7 +121,7 @@ class Profile extends React.Component {
               </div>
             </div>
             <div className="eight wide column">
-              <NavLink exact to="/list">
+              <NavLink exact to="/lista">
               <button className="big teal ui right labeled icon button">
                 <i className="right arrow icon"></i>
                 See available appointments

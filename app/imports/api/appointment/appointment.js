@@ -2,20 +2,38 @@ import { Mongo } from 'meteor/mongo';
 import SimpleSchema from 'simpl-schema';
 import { Tracker } from 'meteor/tracker';
 
-/** Create a Meteor collection. */
-const Appointments = new Mongo.Collection('Appointments');
+/**
+ * The StuffsCollection. It encapsulates state and variable values for stuff.
+ */
+class AppointmentsCollection {
+  constructor() {
+    // The name of this collection.
+    this.name = 'AppointmentsCollection';
+    // Define the Mongo collection.
+    this.collection = new Mongo.Collection(this.name);
+    // Define the structure of each document in the collection.
+    this.schema = new SimpleSchema({
+      date: String,
+      time: String,
+      location: String,
+      vaccine: String,
+      owner: String,
+      // condition: {
+      //   type: String,
+      //   allowedValues: ['excellent', 'good', 'fair', 'poor'],
+      //   defaultValue: 'good',
+      // },
+    }, { tracker: Tracker });
+    // Attach the schema to the collection, so all attempts to insert a document are checked against schema.
+    this.collection.attachSchema(this.schema);
+    // Define names for publications and subscriptions
+    this.userPublicationName = `${this.name}.publication.user`;
+    this.adminPublicationName = `${this.name}.publication.admin`;
+  }
+}
 
-/** Create a schema to constrain the structure of documents associated with this collection. */
-const AppointmentSchema = new SimpleSchema({
-  date: String,
-  time: String,
-  location: String,
-  vaccine: String,
-  owner: String,
-}, { tracker: Tracker });
-
-/** Attach this schema to the collection. */
-Appointments.attachSchema(AppointmentSchema);
-
-/** Make the collection and schema available to other code. */
-export { Appointments, AppointmentSchema };
+/**
+ * The singleton instance of the StuffsCollection.
+ * @type {AppointmentsCollection}
+ */
+export const Appointments = new AppointmentsCollection();

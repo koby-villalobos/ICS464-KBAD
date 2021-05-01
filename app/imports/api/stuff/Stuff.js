@@ -14,11 +14,7 @@ class StuffsCollection {
     // Define the structure of each document in the collection.
     this.schema = new SimpleSchema({
       name: String,
-      date: String,
-      time: String,
-      location: String,
       quantity: Number,
-      vaccine: String,
       owner: String,
       condition: {
         type: String,

@@ -12,6 +12,7 @@
   ],
 
   "defaultAppointments": [
-    { "date": "5/20", "time": "10:00PM", "location": "Queen's Punchbowl", "vaccine": "Moderna", "owner": "john@foo.com" }
+    { "date": "5/20", "time": "10:00PM", "location": "Queen's Punchbowl", "vaccine": "Moderna", "owner": "john@foo.com" },
+    { "date": "5/21", "time": "9:00AM", "location": "Kapiolani Medical Center", "vaccine": "Pfizer", "owner": "john@foo.com" }
   ]
 }
