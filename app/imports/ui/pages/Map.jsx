@@ -6,6 +6,7 @@ import GoogleMap from 'google-map-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Stuffs } from '../../api/stuff/Stuff';
+import { NavLink } from 'react-router-dom';
 
 const _ = require('lodash');
 
@@ -238,9 +239,11 @@ const InfoWindow = (props) => {
       <div style={{ fontSize: 12, paddingBottom: 2 }}>
         {place.address}
       </div>
-      <div style={{ fontSize: 12, color: 'blue' }} onClick={console.log('Schedulesdddd!!!')}>
-        {'Schedule'}
-      </div>
+      <NavLink exact to="/list">
+        <div style={{ fontSize: 12, color: 'blue' }} onClick={console.log('Schedulesdddd!!!')}>
+          {'Schedule'}
+        </div>
+      </NavLink>
     </div>
   );
 };
