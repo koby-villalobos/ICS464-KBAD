@@ -3,7 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { Container, Table, Header, Loader } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import { Appointments } from '../../api/appointment/appointment';
+import { Appointments } from '../../api/appointment/Appointment';
 import Appointment from '../components/Appointment';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
