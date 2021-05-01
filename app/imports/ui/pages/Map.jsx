@@ -10,156 +10,6 @@ import { NavLink } from 'react-router-dom';
 
 const _ = require('lodash');
 
-// // InfoWindow component
-// const InfoWindow = (props) => {
-//   const { place } = props;
-//   const infoWindowStyle = {
-//     position: 'relative',
-//     bottom: 150,
-//     left: '-45px',
-//     width: 220,
-//     backgroundColor: 'white',
-//     boxShadow: '0 2px 7px 1px rgba(0, 0, 0, 0.3)',
-//     padding: 10,
-//     fontSize: 14,
-//     zIndex: 100,
-//   };
-//
-//   return (
-//       <div style={infoWindowStyle}>
-//         <div style={{ fontSize: 16 }}>
-//           {place.name}
-//         </div>
-//         <div style={{ fontSize: 14 }}>
-//         <span style={{ color: 'grey' }}>
-//           {place.rating}
-//           {' '}
-//         </span>
-//           <span style={{ color: 'orange' }}>
-//           {String.fromCharCode(9733).repeat(Math.floor(place.rating))}
-//         </span>
-//           <span style={{ color: 'lightgrey' }}>
-//           {String.fromCharCode(9733).repeat(5 - Math.floor(place.rating))}
-//         </span>
-//         </div>
-//         <div style={{ fontSize: 14, color: 'grey' }}>
-//           {place.types[0]}
-//         </div>
-//         <div style={{ fontSize: 14, color: 'grey' }}>
-//           {'$'.repeat(place.price_level)}
-//         </div>
-//         <div style={{ fontSize: 14, color: 'green' }}>
-//           {place.opening_hours.open_now ? 'Open' : 'Closed'}
-//         </div>
-//       </div>
-//   );
-// };
-//
-// // Marker component
-// const Marker = ({ show, place }) => {
-//   const markerStyle = {
-//     border: '1px solid white',
-//     borderRadius: '50%',
-//     height: 10,
-//     width: 10,
-//     backgroundColor: show ? 'red' : 'blue',
-//     cursor: 'pointer',
-//     zIndex: 10,
-//   };
-//
-//   return (
-//       <>
-//         <div style={markerStyle} />
-//         {show && <InfoWindow place={place} />}
-//       </>
-//   );
-// };
-//
-// class Map extends React.Component {
-//   constructor(props) {
-//     super(props);
-//
-//     this.state = {
-//       places: [],
-//     };
-//   }
-//
-//   componentDidMount() {
-//     fetch('places.json')
-//         .then((response) => response.json())
-//         .then((data) => {
-//           data.results.forEach((result) => {
-//             result.show = false; // eslint-disable-line no-param-reassign
-//           });
-//           this.setState({ places: data.results });
-//         });
-//   }
-//
-//   // onChildClick callback can take two arguments: key and childProps
-//   onChildClickCallback = (key) => {
-//     this.setState((state) => {
-//       const index = state.places.findIndex((e) => e.id === key);
-//       state.places[index].show = !state.places[index].show; // eslint-disable-line no-param-reassign
-//       return { places: state.places };
-//     });
-//   };
-//
-//   render() {
-//     const { places } = this.state;
-//
-//     return (
-//         <>
-//           {!_.isEmpty(places) && (
-//               <GoogleMapReact
-//                   defaultZoom={10}
-//                   defaultCenter={{ lat: 21.474646,lng: -157.969892 }}
-//                   bootstrapURLKeys={{ key: AIzaSyA0Ah_XOmm-nXV26fKq5IUpm5yJpM9F4dc }}
-//                   onChildClick={this.onChildClickCallback}
-//               >
-//                 {places.map((place) => (
-//                     <Marker
-//                         key={place.id}
-//                         lat={place.geometry.location.lat}
-//                         lng={place.geometry.location.lng}
-//                         show={place.show}
-//                         place={place}
-//                     />
-//                 ))}
-//               </GoogleMapReact>
-//           )}
-//         </>
-//     );
-//   }
-// }
-//
-//
-// InfoWindow.propTypes = {
-//   place: PropTypes.shape({
-//     name: PropTypes.string,
-//     formatted_address: PropTypes.string,
-//     rating: PropTypes.number,
-//     types: PropTypes.arrayOf(PropTypes.string),
-//     price_level: PropTypes.number,
-//     opening_hours: PropTypes.shape({
-//       open_now: PropTypes.bool,
-//     }),
-//   }).isRequired,
-// };
-//
-// Marker.propTypes = {
-//   show: PropTypes.bool.isRequired,
-//   place: PropTypes.shape({
-//     name: PropTypes.string,
-//     formatted_address: PropTypes.string,
-//     rating: PropTypes.number,
-//     types: PropTypes.arrayOf(PropTypes.string),
-//     price_level: PropTypes.number,
-//     opening_hours: PropTypes.shape({
-//       open_now: PropTypes.bool,
-//     }),
-//   }).isRequired,
-// };
-
 // http://courses.ics.hawaii.edu/ReviewICS314/morea/meteor-2/experience-meteor-application-template-react.html
 // http://courses.ics.hawaii.edu/ics314f20/modules/meteor-1/
 // https://tomchentw.github.io/react-google-maps/
@@ -248,8 +98,6 @@ const InfoWindow = (props) => {
   );
 };
 
-// const Marker = ({ text }) => <div>{text}</div>;
-
 const Marker = ({ show, place }) => {
   const markerStyle = {
     border: '1px solid white',
@@ -269,9 +117,6 @@ const Marker = ({ show, place }) => {
   );
 };
 
-const _onChildClick = (key, childProps) => {
-  console.log(childProps);
-};
 
 class Map extends React.Component {
   static defaultProps = {
@@ -291,10 +136,7 @@ class Map extends React.Component {
   }
 
   componentDidMount() {
-    // console.log('state: ' + this.state.places);
     this.setState({ places: places });
-    // console.log('state after mount: ' + this.state.places)
-    // this.setState({ places: places });
   }
 
   onMarkerPress = (key) => {
@@ -338,27 +180,6 @@ class Map extends React.Component {
                 place={place}
               />
             ))}
-
-            {/*<Marker*/}
-            {/*  lat={21.474646}*/}
-            {/*  lng={-157.969892}*/}
-            {/*  text="My Marker"*/}
-            {/*/>*/}
-
-            {/*<Marker*/}
-            {/*  lat={21.479463}*/}
-            {/*  lng={-157.883605}*/}
-            {/*  text="My Marker2"*/}
-            {/*/>*/}
-
-            {/*<Marker*/}
-            {/*  lat={21.457147}*/}
-            {/*  lng={-158.100345}*/}
-            {/*  text="My Marker3"*/}
-            {/*/>*/}
-
-            {/*<div lat={21.457147} lng={-158.100345} style={greatPlaceStyle} />*/}
-
           </GoogleMap>
         </div>
       </Container>
